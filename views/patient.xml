@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+  <record model="ir.ui.view" id="view_patient_kanban">
+    <field name="name">hospital.patient.kanban</field>
+    <field name="model">hospital.patient</field>
+    <field name="arch" type="xml">
+      <kanban>
+        <field name="id"/>
+        <field name="name"/>
+        <field name="age"/>
+        <field name="gender"/>
+        <field name="note"/>
+        <templates>
+          <t t-name="kanban-box">
+            <div t-attf-class="oe_kanban_global_click">
+              <div class="oe_kanban_details">
+                <ul>
+                  <li>
+                    Name : <field name="name"/>
+                  </li>
+                  <li>
+                    Age : <field name="age"/>
+                  </li>
+                  <li>
+                    Gender :<field name="gender"/>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </t>
+        </templates>
+      </kanban>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="view_patient_tree">
+    <field name="name">hospital.patient.tree</field>
+    <field name="model">hospital.patient</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="name"/>
+        <field name="age"/>
+        <field name="gender"/>
+        <field name="note"/>
+      </tree>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="view_patient_form">
+    <field name="name">hospital.patient.form</field>
+    <field name="model">hospital.patient</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <group>
+            <group>
+              <field name="name"/>
+              <field name="age"/>
+            </group>
+            <group>
+              <field name="gender"/>
+              <field name="note"/>
+            </group>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="view_patient_search">
+    <field name="name">hospital.patient.search</field>
+    <field name="model">hospital.patient</field>
+    <field name="arch" type="xml">
+      <search string="Patients">
+        <field name="name"/>
+        <field name="note"/>
+        <field name="gender"/>
+        <field name="age"/>
+        <separator/>
+        <filter string="Male" name="male" domain="[('gender','=','male')]"/>
+        <filter string="Female" name="female" domain="[('gender','=','female')]"/>
+        <group expand="1" string="Group By">
+          <filter string="Gender" name="gender" context="{'group_by':'gender'}"/>
+          <filter string="Patient Name" name="patient_name" context="{'group_by':'name'}"/>
+        </group>
+      </search>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="patient_action">
+    <field name="name">Patients</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">hospital.patient</field>
+    <field name="view_mode">tree,kanban,form</field>
+    <field name="help" type="html">
+      <p class="o_view_nocontent_smiling_face">
+        create your first patient!
+      </p>
+    </field>
+  </record>
+  
+  <menuitem id="hospital_root"
+            name="Hospital"
+            sequence="10"/>
+
+  <menuitem id="hospital_patient_root"
+            name="Patients"
+            parent="hospital_root"
+            sequence="10"/>
+
+  <menuitem id="hospital_patient"
+            name="Patients"
+            parent="hospital_patient_root"
+            action="patient_action"
+            sequence="10"/>
+</odoo>

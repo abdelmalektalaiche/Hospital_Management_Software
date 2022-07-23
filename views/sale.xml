@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="view_order_form_inherit">
+        <field name="name">sale.order.inherited</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <!-- <field name="partner_id" position="after">....</field> --> 
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="sale_description"/>
+            </xpath>
+        </field>
+      </record>
+
+      <record model="ir.ui.view" id="view_order_tree_inherit">
+        <field name="name">sale.order.inherited</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree"/>
+        <field name="arch" type="xml">
+            <!-- <field name="partner_id" position="after">....</field> --> 
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="sale_description"/>
+            </xpath>
+        </field>
+      </record>
+
+</odoo>
