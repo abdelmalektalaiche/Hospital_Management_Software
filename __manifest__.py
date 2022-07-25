@@ -9,7 +9,9 @@
     'website': "http://www.ESI.dz",
     'category': 'Productivity',
     'depends' : [
-        'sale'
+        'sale',
+        'mail',
+        'hr'
         ],
     'data' : [
         'views/patient.xml',
