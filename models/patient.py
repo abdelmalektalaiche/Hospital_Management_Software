@@ -1,4 +1,4 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 
 
 class HospitalPatient(models.Model):
@@ -7,6 +7,7 @@ class HospitalPatient(models.Model):
      _description = 'Hospital Patient'
 
      name = fields.Char(string='Name', tracking=True, required=True)
+     reference = fields.Char(string='Order Reference', required=True, copy=False, readonly=True, default=lambda self: _('New'))
      age = fields.Integer(string='Age', tracking=True)
      gender = fields.Selection([('male','Male'),('female','Female'),('other','Other')], required=True, tracking=True, default='male')
      note = fields.Text(string='Description', tracking=True)
@@ -29,5 +30,7 @@ class HospitalPatient(models.Model):
      def create(self, vals):
           if not vals.get('note'):
                vals['note'] = 'New Patient'
+          if vals.get('reference', _('New')) == _('New'):
+               vals['reference'] = self.env['ir.sequence'].next_by_code('hospital.patient') or _('New')
           res = super(HospitalPatient, self).create(vals)
           return res
