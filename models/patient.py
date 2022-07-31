@@ -13,18 +13,28 @@ class HospitalPatient(models.Model):
      note = fields.Text(string='Description', tracking=True)
      state = fields.Selection([('draft','Draft'), ('confirm','confirmed'), ('done','Done'), ('cancel','Cancelled')], default='draft', tracking=True, string='status')
      responsible_id = fields.Many2one('res.partner', string='Responsible') 
+     appointment_count = fields.Integer(string='Appointment Count', compute='_compute_appointment_count')
+     
+     def _compute_appointment_count(self):
+          for rec in self:
+               appointment_count = self.env['hospital.appointment'].search_count([('patient_id', '=', rec.id)])
+               rec.appointment_count = appointment_count
      
      def action_confirm(self):
-          self.state = 'confirm'
+          for rec in self:
+               rec.state = 'confirm'
           
      def action_done(self):
-          self.state = 'done'
+          for rec in self:
+               rec.state = 'done'
           
      def action_draft(self):
-          self.state = 'draft'
+          for rec in self:
+               rec.state = 'draft'
           
      def action_cancel(self):
-          self.state = 'cancel'
+          for rec in self:
+               rec.state = 'cancel'
           
      @api.model 
      def create(self, vals):

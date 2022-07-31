@@ -35,8 +35,12 @@
               <group>
                 <group>
                   <field name="patient_id"/>
+                  <field name="gender" readonly="1" force_save="1"/>
+                  <field name="age"/>
                 </group>
                 <group>
+                  <field name="date_appointment"/>
+                  <field name="date_checkup"/>
                   <field name="note"/>
                 </group>
               </group>

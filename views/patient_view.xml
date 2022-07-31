@@ -45,6 +45,7 @@
         <field name="age"/>
         <field name="gender"/>
         <field name="note"/>
+        <field name="appointment_count"/>
         <field name="state"/>
       </tree>
     </field>
@@ -74,6 +75,7 @@
               <field name="name"/>
               <field name="responsible_id"/>
               <field name="age"/>
+              <field name="appointment_count"/>
             </group>
             <group>
               <field name="gender" invisible="context.get('hide_gender')"/>
