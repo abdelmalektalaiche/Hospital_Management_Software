@@ -61,6 +61,7 @@
           <button id="button_done" name="action_done" string="Mark As Done" class="btn-primary" states="confirm" type="object"/>
           <button id="button_draft" name="action_draft" string="Set To Draft" class="btn-primary" states="cancel" type="object"/>
           <button id="button_cancel" name="action_cancel" string="Cancel" states="draft,done,confirm" confirm="Are you sure that you need to cancel ?" type="object"/>
+          <button id="button_create_appointment" name="%(action_create_appointment)d" string="Create Appointment" class="btn-primary" type="action"/>
           <field name="state" widget="statusbar" statusbar_visible="draft,done,confirm"/>
           <!--options="{'clickable': '1'}"-->
         </header>

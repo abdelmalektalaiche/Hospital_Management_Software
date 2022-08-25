@@ -83,13 +83,19 @@
     </record>
 
     <menuitem id="menu_appointment_root"
-            name="Appointments"
-            parent="menu_hospital_root"
-            sequence="20"/>
+              name="Appointments"
+              parent="menu_hospital_root"
+              sequence="20"/>
 
-     <menuitem id="menu_appointment"
-               name="Appointments"
-               parent="menu_appointment_root"
-               action="action_hospital_appointment"
-               sequence="10"/>
+    <menuitem id="menu_appointment"
+              name="Appointments"
+              parent="menu_appointment_root"
+              action="action_hospital_appointment"
+              sequence="10"/>
+
+    <menuitem id="menu_create_appointment"
+              name="Create Appointment"
+              parent="menu_appointment_root"
+              action="action_create_appointment"
+              sequence="20"/>
 </odoo>
