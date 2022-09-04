@@ -5,9 +5,18 @@
         <field name="name">hospital.appointment.tree</field>
         <field name="model">hospital.appointment</field>
         <field name="arch" type="xml">
-          <tree>
+          <tree multi_edit="1">
+            <header>
+              <button name="action_done" string="Mark As Done" class="btn-primary" type="object"/>
+            </header>
             <field name="name"/>
+            <field name="doctor_id"/>
             <field name="patient_id"/>
+            <field name="age"/>
+            <field name="gender" optional="show"/>
+            <field name="date_appointment" optional="show"/>
+            <field name="date_checkup" optional="hide"/>
+            <field name="note" optional="show"/>
             <field name="state"/>
           </tree>
         </field>
@@ -39,11 +48,25 @@
                   <field name="age"/>
                 </group>
                 <group>
+                  <field name="doctor_id"/>
                   <field name="date_appointment"/>
                   <field name="date_checkup"/>
-                  <field name="note"/>
                 </group>
               </group>
+              <notebook>
+                <page string="Doctor Prescription" name="doctor_prescription">
+                  <group>
+                    <field name="prescription"/>
+                  </group>
+                </page>
+                <page string="Medicine" name="medicine">
+                </page>
+                <page string="Other Info" name="other_info">
+                  <group>
+                    <field name="note"/>
+                  </group>
+                </page>
+              </notebook>
             </sheet>
             <div class="oe_chatter">
               <field name="message_follower_ids"/>
@@ -98,4 +121,10 @@
               parent="menu_appointment_root"
               action="action_create_appointment"
               sequence="20"/>
+
+    <menuitem id="menu_search_appointment"
+              name="Search Appointment"
+              parent="menu_appointment_root"
+              action="action_search_appointment"
+              sequence="30"/>
 </odoo>

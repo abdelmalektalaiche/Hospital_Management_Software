@@ -5,6 +5,7 @@ class HospitalPatient(models.Model):
      _name = 'hospital.patient'
      _inherit = ["mail.thread","mail.activity.mixin"]
      _description = 'Hospital Patient'
+     _order = "reference desc"
 
      name = fields.Char(string='Name', tracking=True, required=True)
      reference = fields.Char(string='Order Reference', required=True, copy=False, readonly=True, default=lambda self: _('New'))
@@ -14,6 +15,7 @@ class HospitalPatient(models.Model):
      state = fields.Selection([('draft','Draft'), ('confirm','confirmed'), ('done','Done'), ('cancel','Cancelled')], default='draft', tracking=True, string='status')
      responsible_id = fields.Many2one('res.partner', string='Responsible') 
      appointment_count = fields.Integer(string='Appointment Count', compute='_compute_appointment_count')
+     image = fields.Binary(string='Patient Image')
      
      def _compute_appointment_count(self):
           for rec in self:

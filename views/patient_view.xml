@@ -66,6 +66,7 @@
           <!--options="{'clickable': '1'}"-->
         </header>
         <sheet>
+          <field name="image" widget="image" class="oe_avatar"/>
           <div class="oe_title">
             <h1>
               <field name="reference" readonly="1"/>
