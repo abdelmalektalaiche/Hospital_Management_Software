@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="report_all_patient_list">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div class="oe_structure"/>
+                    <div class="text-center">
+                        <h2>َPatients</h2>
+                    </div>
+                    <br/>
+                    <table class="table table-bordered mt32">
+                        <thead>
+                            <tr>
+                                <th name="th_name" class="text-left">
+                                    <span>Patient name</span>
+                                </th>
+                                <th name="th_gender" class="text-left">
+                                    <span>َGender</span>
+                                </th>
+                                <th name="th_age" class="text-left">
+                                    <span>Age</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <span>Email: <t t-esc="email"/></span>
+                        <!--<t t-esc="docs"/> -->
+                        <t t-foreach="docs" t-as="line">
+                            <tr>
+                                <td>
+                                    <span t-field="line.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="line.gender"/>
+                                </td>
+                                <td>
+                                    <span t-field="line.age"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

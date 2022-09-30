@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
+  <record model="ir.actions.act_window" id="action_open_appointment">
+    <field name="name">Appointments</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">hospital.appointment</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('doctor_id', '=', active_id)]</field>
+    <field name="context">{'default_doctor_id': active_id}</field>
+    <field name="help" type="html">
+      <p class="o_view_nocontent_smiling_face">
+        create your first appointment!
+      </p>
+    </field>
+  </record>
+
   <record model="ir.ui.view" id="view_doctor_kanban">
     <field name="name">hospital.doctor.kanban</field>
     <field name="model">hospital.doctor</field>
@@ -53,6 +67,15 @@
     <field name="arch" type="xml">
       <form>
         <sheet>
+          <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/> 
+          <div class="oe_button_box" name="button_box">
+            <button name="%(om_hospital.action_open_appointment)d" type="action" class="oe_stat_button" icon="fa-calendar">
+              <div class="o_stat_info">
+                <field name="appointment_count" class="o_stat_value"/>
+                <span class="o_stat_text">Appointments</span>
+              </div>
+            </button>
+          </div>
           <field name="image" widget="image" class="oe_avatar"/>
           <group>
             <group>
@@ -62,6 +85,7 @@
             <group>
               <field name="gender"/>
               <field name="note"/>
+              <field name="active" invisible="1"/>
             </group>
           </group>
         </sheet>
@@ -84,6 +108,8 @@
         <separator/>
         <filter string="Male" name="male" domain="[('gender','=','male')]"/>
         <filter string="Female" name="female" domain="[('gender','=','female')]"/>
+        <separator/>
+        <filter string="Archive" name="inactive" domain="[('active','=', False)]"/>
         <group expand="1" string="Group By">
           <filter string="Gender" name="gender" context="{'group_by':'gender'}"/>
         </group>

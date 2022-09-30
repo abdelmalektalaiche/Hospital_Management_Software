@@ -7,8 +7,9 @@
         <field name="arch" type="xml">
           <form string="Create New Appointment">
             <group>
-              <field name="date_appointment"/>
               <field name="patient_id"/>
+              <field name="doctor_id"/>
+              <field name="date_appointment"/>
             </group>
             <footer>
               <button name="action_create_appointment" type="object" string="Create" class="btn-primary"/>
